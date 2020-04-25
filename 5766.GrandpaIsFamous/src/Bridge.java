@@ -9,7 +9,7 @@ public class Bridge {
 		while(true){
 			m = s.nextInt();
 			n = s.nextInt();
-			if(m == 0)
+			if(m == 0 && n == 0)
 				break;
 			else {
 				int[] player = new int[10000];
@@ -28,7 +28,7 @@ public class Bridge {
 						b = a;
 						a = player[i];
 					}
-					else if(a<player[i] && player[i]<b)
+					else if(a>player[i] && player[i]>b)
 						b = player[i];
 				}
 				for(int i = 0; i<10000; i++) {
