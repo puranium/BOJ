@@ -33,8 +33,9 @@ public class Bridge {
 				}
 				for(int i = 0; i<10000; i++) {
 					if(player[i] == b)
-						System.out.println(i+1);
-					}		
+						System.out.print(i+1 + " ");
+					}
+				System.out.println();
 			}		
 		}
 	}
