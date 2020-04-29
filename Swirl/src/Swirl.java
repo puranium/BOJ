@@ -35,7 +35,7 @@ public class Swirl {
 		for(int i=n*n; i>0; i--) {
 			box[a][b] = i;
 			if(a == 0 && b == 0) 
-				r();  // 처음엔 x,y,a,b의 비교가 불가능하므로 오른쪽으로 이동
+				r(); 
 			else if(x<a) {
 				if(a == n-1)
 					d();
