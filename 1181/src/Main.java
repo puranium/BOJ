@@ -15,12 +15,18 @@ public class Main {
 		}
 		
 		// 여기까지 입력
-		for(int k=n-1; k>0; k--) {
+		for(int k=1; k<n; k++) {
 			for(int i=0; i<k; i++) {
-				compare(str,i,i+1);
+				if(compare(str,i,k)==false){
+					for(int m=k; m>i; m--) {
+						swap(str, m-1, m);
+					}
+					break;
+				}
 			}
 			
 		}
+		// 정렬
 		
 		int del = 0;
 		for(int i=0; i<n-1; i++) {
@@ -48,17 +54,18 @@ public class Main {
 	}
 	// a, b 위치바꾸기
 		
-	static void compare(String[] arr, int c, int d) {
+	static boolean compare(String[] arr, int c, int d) {
+		boolean ret = true;
 		int cl = arr[c].length();
 		int dl = arr[d].length();
 		if(cl>dl)
-			swap(arr,c,d);
+			ret = false;
 		else if(cl == dl) {
 			char[] arrc = arr[c].toCharArray();
 			char[] arrd = arr[d].toCharArray();
 			for(int i=0; i<cl; i++) {
 				if((int)arrc[i]>(int)arrd[i]) {
-					swap(arr,c,d);
+					ret = false;
 					break;
 				}
 				else if((int)arrc[i]<(int)arrd[i])
@@ -67,6 +74,7 @@ public class Main {
 			}
 			
 		}
+		return ret;
 	
 	}
 	// c, d의 크기비교후 swap
