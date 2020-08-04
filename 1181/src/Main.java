@@ -13,32 +13,25 @@ public class Main {
 		//	System.out.println(str[i].length()); 
 		// 입력확인용	
 		}
-		
 		// 여기까지 입력
+		
+		int del = 0; // 중복이라서 지운 개수
 		for(int k=1; k<n; k++) {
-			for(int i=0; i<k; i++) {
-				if(compare(str,i,k)==false){
+			for(int i=0; i<k-del; i++) {
+				if(compare(str[i], str[k]) == 3){
 					for(int m=k; m>i; m--) {
 						swap(str, m-1, m);
 					}
+					break;
+				}
+				else if(compare(str[i], str[k]) == 2) {
+					del++;
 					break;
 				}
 			}
 			
 		}
 		// 정렬
-		
-		int del = 0;
-		for(int i=0; i<n-1; i++) {
-			if(same(str[i-del], str[i+1-del])) {
-				for(int j=i-del; j<n-1-del; j++) {
-					str[j] = str[j+1];
-				}
-				del++;
-			}
-			
-		}
-		// 중복된 원소 지우고 배열 앞으로 밀기
 		
 		for(int i=0; i<n-del; i++) {
 			System.out.println(str[i]);
@@ -54,51 +47,33 @@ public class Main {
 	}
 	// a, b 위치바꾸기
 		
-	static boolean compare(String[] arr, int c, int d) {
-		boolean ret = true;
-		int cl = arr[c].length();
-		int dl = arr[d].length();
-		if(cl>dl)
-			ret = false;
-		else if(cl == dl) {
-			char[] arrc = arr[c].toCharArray();
-			char[] arrd = arr[d].toCharArray();
-			for(int i=0; i<cl; i++) {
-				if((int)arrc[i]>(int)arrd[i]) {
-					ret = false;
-					break;
-				}
-				else if((int)arrc[i]<(int)arrd[i])
-					break;
-					
-			}
-			
-		}
-		return ret;
-	
-	}
-	// c, d의 크기비교후 swap
-	
-	static boolean same(String a, String b) {
+	static int compare(String a, String b) {
+		int ret = 2;
+		int al = a.length();
+		int bl = b.length();
 		char[] arra = a.toCharArray();
 		char[] arrb = b.toCharArray();
 		
-		boolean ret = true;
-		
-		if(a.length() != b.length())
-			ret = false;
-		else{
-			for(int i=0; i<a.length(); i++) {
-				if(arra[i] != arrb[i]) {
-					ret = false;
+		if(al<bl)
+			ret = 1;
+		else if(al>bl)
+			ret = 3;
+		else {
+			for(int i=0; i<al; i++) {
+				if((int)arra[i]<(int)arrb[i]) {
+					ret = 1;
 					break;
 				}
-				
+				else if((int)arra[i]>(int)arrb[i]) {
+					ret = 3;
+					break;
+				}
 			}
+			
 		}
-		
+			
 		return ret;
-		
 	}
+		
 
 }
